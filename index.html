@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$TOPYTURNER Mining Pool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mining-panel, .stats-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
+
+        .mining-status {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .status-indicator {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .status-idle {
+            background: linear-gradient(45deg, #666, #444);
+            color: #aaa;
+        }
+
+        .status-mining {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: #fff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .mine-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .mine-button.start {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: white;
+        }
+
+        .mine-button.stop {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+        }
+
+        .mine-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .hash-rate {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .hash-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .hash-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .hash-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-value {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .recent-blocks {
+            margin-top: 30px;
+        }
+
+        .block-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .wallet-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .wallet-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .wallet-input::placeholder {
+            color: #888;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">$TOPYTURNER</div>
+            <div class="tagline">Next Generation Cryptocurrency Mining</div>
+        </div>
+
+        <div class="main-content">
+            <div class="mining-panel">
+                <h2 class="panel-title">Mining Control</h2>
+                
+                <div class="mining-status">
+                    <div class="status-indicator status-idle" id="statusIndicator">⛏️</div>
+                    <div id="miningStatus">Ready to Mine</div>
+                </div>
+
+                <button class="mine-button start" id="mineButton" onclick="toggleMining()">
+                    START MINING
+                </button>
+
+                <div class="hash-rate">
+                    <div class="hash-item">
+                        <div class="hash-value" id="hashRate">0.00</div>
+                        <div class="hash-label">H/s</div>
+                    </div>
+                    <div class="hash-item">
+                        <div class="hash-value" id="totalMined">0.000000</div>
+                        <div class="hash-label">$TOPY Mined</div>
+                    </div>
+                </div>
+
+                <div class="wallet-section">
+                    <h3 style="margin-bottom: 15px; color: #4ecdc4;">Wallet Address</h3>
+                    <input type="text" class="wallet-input" id="walletAddress" 
+                           placeholder="Enter your $TOPYTURNER wallet address">
+                    <button class="mine-button start" style="padding: 10px;" onclick="saveWallet()">
+                        Save Wallet
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <h2 class="panel-title">Network Statistics</h2>
+                
+                <div class="stat-item">
+                    <span>Network Hash Rate:</span>
+                    <span class="stat-value" id="networkHashRate">1.24 TH/s</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span>Difficulty:</span>
+                    <span class="stat-value" id="difficulty">156,842</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span>Block Height:</span>
+                    <span class="stat-value" id="blockHeight">45,231</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span>Block Reward:</span>
+                    <span class="stat-value">50.00 $TOPY</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span>Active Miners:</span>
+                    <span class="stat-value" id="activeMiners">1,247</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span>Total Supply:</span>
+                    <span class="stat-value">2,261,550 $TOPY</span>
+                </div>
+
+                <div class="recent-blocks">
+                    <h3 style="margin-bottom: 15px; color: #4ecdc4;">Recent Blocks</h3>
+                    <div class="block-item">
+                        <span>#45231</span>
+                        <span>2 min ago</span>
+                    </div>
+                    <div class="block-item">
+                        <span>#45230</span>
+                        <span>8 min ago</span>
+                    </div>
+                    <div class="block-item">
+                        <span>#45229</span>
+                        <span>12 min ago</span>
+                    </div>
+                    <div class="block-item">
+                        <span>#45228</span>
+                        <span>19 min ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 $TOPYTURNER Mining Pool. All rights reserved.</p>
+            <p>Join our community and start mining the future of cryptocurrency.</p>
+        </div>
+    </div>
+
+    <script>
+        let isMining = false;
+        let miningInterval;
+        let hashRate = 0;
+        let totalMined = 0;
+        let blockHeight = 45231;
+        let difficulty = 156842;
+        let networkHashRate = 1.24;
+        let activeMiners = 1247;
+
+        function toggleMining() {
+            const button = document.getElementById('mineButton');
+            const statusIndicator = document.getElementById('statusIndicator');
+            const miningStatus = document.getElementById('miningStatus');
+            const walletAddress = document.getElementById('walletAddress').value;
+
+            if (!walletAddress) {
+                alert('Please enter your wallet address first!');
+                return;
+            }
+
+            if (!isMining) {
+                // Start mining
+                isMining = true;
+                button.textContent = 'STOP MINING';
+                button.className = 'mine-button stop';
+                statusIndicator.className = 'status-indicator status-mining';
+                statusIndicator.textContent = '⚡';
+                miningStatus.textContent = 'Mining in Progress...';
+
+                // Simulate mining
+                miningInterval = setInterval(() => {
+                    // Simulate hash rate (random between 500-2000 H/s)
+                    hashRate = (Math.random() * 1500 + 500).toFixed(2);
+                    document.getElementById('hashRate').textContent = hashRate;
+
+                    // Simulate mining rewards (very small amounts)
+                    const reward = Math.random() * 0.0001 + 0.00005;
+                    totalMined += reward;
+                    document.getElementById('totalMined').textContent = totalMined.toFixed(6);
+
+                    // Occasionally update network stats
+                    if (Math.random() < 0.1) {
+                        updateNetworkStats();
+                    }
+                }, 1000);
+
+            } else {
+                // Stop mining
+                stopMining();
+            }
+        }
+
+        function stopMining() {
+            isMining = false;
+            const button = document.getElementById('mineButton');
+            const statusIndicator = document.getElementById('statusIndicator');
+            const miningStatus = document.getElementById('miningStatus');
+
+            button.textContent = 'START MINING';
+            button.className = 'mine-button start';
+            statusIndicator.className = 'status-indicator status-idle';
+            statusIndicator.textContent = '⛏️';
+            miningStatus.textContent = 'Ready to Mine';
+
+            clearInterval(miningInterval);
+            document.getElementById('hashRate').textContent = '0.00';
+        }
+
+        function updateNetworkStats() {
+            // Simulate network changes
+            blockHeight += Math.random() < 0.3 ? 1 : 0;
+            difficulty += Math.floor(Math.random() * 10 - 5);
+            networkHashRate += (Math.random() - 0.5) * 0.1;
+            activeMiners += Math.floor(Math.random() * 10 - 5);
+
+            document.getElementById('blockHeight').textContent = blockHeight.toLocaleString();
+            document.getElementById('difficulty').textContent = difficulty.toLocaleString();
+            document.getElementById('networkHashRate').textContent = networkHashRate.toFixed(2) + ' TH/s';
+            document.getElementById('activeMiners').textContent = activeMiners.toLocaleString();
+        }
+
+        function saveWallet() {
+            const walletAddress = document.getElementById('walletAddress').value;
+            if (walletAddress) {
+                alert('Wallet address saved successfully!');
+                // Here you would normally save to your backend
+                console.log('Wallet saved:', walletAddress);
+            } else {
+                alert('Please enter a valid wallet address.');
+            }
+        }
+
+        // Simulate network updates every 30 seconds
+        setInterval(updateNetworkStats, 30000);
+
+        // Initialize with some realistic values
+        updateNetworkStats();
+    </script>
+</body>
+</html>
