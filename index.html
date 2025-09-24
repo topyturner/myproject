@@ -44,6 +44,148 @@
             color: #888;
         }
 
+        .user-nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .welcome-bar {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .modal-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #4ecdc4;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-input::placeholder {
+            color: #888;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .switch-auth {
+            text-align: center;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .switch-auth a {
+            color: #4ecdc4;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .switch-auth a:hover {
+            text-decoration: underline;
+        }
+
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -152,6 +294,37 @@
             margin-top: 5px;
         }
 
+        .wallet-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .wallet-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            word-break: break-all;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            opacity: 0.8;
+        }
+
         .stat-item {
             display: flex;
             justify-content: space-between;
@@ -182,25 +355,18 @@
             font-family: monospace;
         }
 
-        .wallet-section {
-            margin-top: 20px;
+        .user-balance {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             padding: 20px;
-            background: rgba(255, 255, 255, 0.03);
             border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        .wallet-input {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .wallet-input::placeholder {
-            color: #888;
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
         .footer {
@@ -211,6 +377,40 @@
             margin-top: 60px;
         }
 
+        .guest-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .guest-message {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+        }
+
+        .guest-message h2 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+        }
+
+        .guest-message p {
+            margin-bottom: 30px;
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -219,20 +419,49 @@
             .logo {
                 font-size: 2rem;
             }
+
+            .user-nav {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="user-nav" id="userNav">
+            <button class="nav-btn" onclick="showLogin()">Login</button>
+            <button class="nav-btn" onclick="showRegister()">Register</button>
+        </div>
+
         <div class="header">
             <div class="logo">$TOPYTURNER</div>
             <div class="tagline">Next Generation Cryptocurrency Mining</div>
         </div>
 
-        <div class="main-content">
+        <div class="welcome-bar" id="welcomeBar"></div>
+
+        <div class="guest-overlay" id="guestOverlay">
+            <div class="guest-message">
+                <h2>Welcome to $TOPYTURNER Mining</h2>
+                <p>Join thousands of miners earning $TOPY tokens. Create your account to get started with your own wallet and start mining immediately!</p>
+                <button class="auth-btn" onclick="showRegister()">Get Started - Register Now</button>
+                <button class="auth-btn" onclick="showLogin()" style="background: rgba(255,255,255,0.1);">Already have an account? Login</button>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent">
             <div class="mining-panel">
                 <h2 class="panel-title">Mining Control</h2>
                 
+                <div class="user-balance">
+                    <div class="balance-amount" id="userBalance">0.000000 $TOPY</div>
+                    <div>Your Balance</div>
+                </div>
+
                 <div class="mining-status">
                     <div class="status-indicator status-idle" id="statusIndicator">⛏️</div>
                     <div id="miningStatus">Ready to Mine</div>
@@ -248,18 +477,17 @@
                         <div class="hash-label">H/s</div>
                     </div>
                     <div class="hash-item">
-                        <div class="hash-value" id="totalMined">0.000000</div>
-                        <div class="hash-label">$TOPY Mined</div>
+                        <div class="hash-value" id="sessionMined">0.000000</div>
+                        <div class="hash-label">Session Mined</div>
                     </div>
                 </div>
 
                 <div class="wallet-section">
-                    <h3 style="margin-bottom: 15px; color: #4ecdc4;">Wallet Address</h3>
-                    <input type="text" class="wallet-input" id="walletAddress" 
-                           placeholder="Enter your $TOPYTURNER wallet address">
-                    <button class="mine-button start" style="padding: 10px;" onclick="saveWallet()">
-                        Save Wallet
-                    </button>
+                    <h3 style="margin-bottom: 15px; color: #4ecdc4;">Your $TOPY Wallet</h3>
+                    <div class="wallet-info" id="walletInfo">
+                        <div id="walletAddress">Please login to view your wallet</div>
+                        <button class="copy-btn" id="copyBtn" onclick="copyWallet()" style="display: none;">Copy Address</button>
+                    </div>
                 </div>
             </div>
 
@@ -324,26 +552,234 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div class="auth-modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h2 class="modal-title">Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Username or Email</label>
+                    <input type="text" class="form-input" id="loginUsername" placeholder="Enter username or email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="loginPassword" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="auth-btn">Login to Mining</button>
+            </form>
+            <div class="switch-auth">
+                Don't have an account? <a onclick="showRegister()">Register here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="auth-modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('registerModal')">&times;</span>
+            <h2 class="modal-title">Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" id="registerUsername" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="registerPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="auth-btn">Create Account & Start Mining</button>
+            </form>
+            <div class="switch-auth">
+                Already have an account? <a onclick="showLogin()">Login here</a>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // User management
+        let currentUser = null;
+        let userDatabase = {}; // In real app, this would be a backend database
         let isMining = false;
         let miningInterval;
         let hashRate = 0;
-        let totalMined = 0;
+        let sessionMined = 0;
+        let userBalance = 0;
         let blockHeight = 45231;
         let difficulty = 156842;
         let networkHashRate = 1.24;
         let activeMiners = 1247;
 
+        // Initialize app
+        window.addEventListener('load', function() {
+            checkAuthStatus();
+        });
+
+        function checkAuthStatus() {
+            // Check if user is logged in (using memory storage)
+            if (currentUser) {
+                showDashboard();
+            } else {
+                showGuestOverlay();
+            }
+        }
+
+        function showGuestOverlay() {
+            document.getElementById('guestOverlay').style.display = 'flex';
+        }
+
+        function hideGuestOverlay() {
+            document.getElementById('guestOverlay').style.display = 'none';
+        }
+
+        function showLogin() {
+            hideGuestOverlay();
+            closeModal('registerModal');
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function showRegister() {
+            hideGuestOverlay();
+            closeModal('loginModal');
+            document.getElementById('registerModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            if (!currentUser) {
+                showGuestOverlay();
+            }
+        }
+
+        // Generate wallet address
+        function generateWalletAddress() {
+            const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+            let result = '$TOPY';
+            for (let i = 0; i < 28; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Register form handler
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            if (userDatabase[username]) {
+                alert('Username already exists!');
+                return;
+            }
+
+            // Create new user with wallet
+            const newUser = {
+                username: username,
+                email: email,
+                password: password, // In real app, this would be hashed
+                walletAddress: generateWalletAddress(),
+                balance: 0,
+                totalMined: 0,
+                joinDate: new Date().toISOString()
+            };
+
+            userDatabase[username] = newUser;
+            currentUser = newUser;
+
+            alert('Account created successfully! Your $TOPY wallet has been generated.');
+            closeModal('registerModal');
+            showDashboard();
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const user = userDatabase[username];
+            if (!user || user.password !== password) {
+                alert('Invalid username or password!');
+                return;
+            }
+
+            currentUser = user;
+            alert('Welcome back, ' + username + '!');
+            closeModal('loginModal');
+            showDashboard();
+        });
+
+        function showDashboard() {
+            // Update UI for logged in user
+            document.getElementById('welcomeBar').innerHTML = 
+                `🎉 Welcome back, <strong>${currentUser.username}</strong>! Happy mining! 💎`;
+            document.getElementById('welcomeBar').style.display = 'block';
+
+            // Update navigation
+            document.getElementById('userNav').innerHTML = `
+                <span style="margin-right: 15px;">Hello, ${currentUser.username}</span>
+                <button class="nav-btn" onclick="logout()">Logout</button>
+            `;
+
+            // Update wallet info
+            document.getElementById('walletAddress').textContent = currentUser.walletAddress;
+            document.getElementById('copyBtn').style.display = 'inline-block';
+
+            // Update balance
+            userBalance = currentUser.balance;
+            document.getElementById('userBalance').textContent = userBalance.toFixed(6) + ' $TOPY';
+
+            hideGuestOverlay();
+        }
+
+        function logout() {
+            if (isMining) {
+                stopMining();
+            }
+            currentUser = null;
+            document.getElementById('welcomeBar').style.display = 'none';
+            document.getElementById('userNav').innerHTML = `
+                <button class="nav-btn" onclick="showLogin()">Login</button>
+                <button class="nav-btn" onclick="showRegister()">Register</button>
+            `;
+            document.getElementById('walletAddress').textContent = 'Please login to view your wallet';
+            document.getElementById('copyBtn').style.display = 'none';
+            document.getElementById('userBalance').textContent = '0.000000 $TOPY';
+            showGuestOverlay();
+        }
+
+        function copyWallet() {
+            navigator.clipboard.writeText(currentUser.walletAddress).then(() => {
+                alert('Wallet address copied to clipboard!');
+            });
+        }
+
         function toggleMining() {
+            if (!currentUser) {
+                alert('Please login to start mining!');
+                return;
+            }
+
             const button = document.getElementById('mineButton');
             const statusIndicator = document.getElementById('statusIndicator');
             const miningStatus = document.getElementById('miningStatus');
-            const walletAddress = document.getElementById('walletAddress').value;
-
-            if (!walletAddress) {
-                alert('Please enter your wallet address first!');
-                return;
-            }
 
             if (!isMining) {
                 // Start mining
@@ -352,7 +788,7 @@
                 button.className = 'mine-button stop';
                 statusIndicator.className = 'status-indicator status-mining';
                 statusIndicator.textContent = '⚡';
-                miningStatus.textContent = 'Mining in Progress...';
+                miningStatus.textContent = `Mining for ${currentUser.username}...`;
 
                 // Simulate mining
                 miningInterval = setInterval(() => {
@@ -361,9 +797,14 @@
                     document.getElementById('hashRate').textContent = hashRate;
 
                     // Simulate mining rewards (very small amounts)
-                    const reward = Math.random() * 0.0001 + 0.00005;
-                    totalMined += reward;
-                    document.getElementById('totalMined').textContent = totalMined.toFixed(6);
+                    const reward = Math.random() * 0.001 + 0.0005;
+                    sessionMined += reward;
+                    userBalance += reward;
+                    currentUser.balance = userBalance;
+                    currentUser.totalMined += reward;
+
+                    document.getElementById('sessionMined').textContent = sessionMined.toFixed(6);
+                    document.getElementById('userBalance').textContent = userBalance.toFixed(6) + ' $TOPY';
 
                     // Occasionally update network stats
                     if (Math.random() < 0.1) {
@@ -372,7 +813,6 @@
                 }, 1000);
 
             } else {
-                // Stop mining
                 stopMining();
             }
         }
@@ -391,10 +831,15 @@
 
             clearInterval(miningInterval);
             document.getElementById('hashRate').textContent = '0.00';
+            
+            if (sessionMined > 0) {
+                alert(`Mining session ended! You earned ${sessionMined.toFixed(6)} $TOPY this session.`);
+                sessionMined = 0;
+                document.getElementById('sessionMined').textContent = '0.000000';
+            }
         }
 
         function updateNetworkStats() {
-            // Simulate network changes
             blockHeight += Math.random() < 0.3 ? 1 : 0;
             difficulty += Math.floor(Math.random() * 10 - 5);
             networkHashRate += (Math.random() - 0.5) * 0.1;
@@ -406,22 +851,22 @@
             document.getElementById('activeMiners').textContent = activeMiners.toLocaleString();
         }
 
-        function saveWallet() {
-            const walletAddress = document.getElementById('walletAddress').value;
-            if (walletAddress) {
-                alert('Wallet address saved successfully!');
-                // Here you would normally save to your backend
-                console.log('Wallet saved:', walletAddress);
-            } else {
-                alert('Please enter a valid wallet address.');
-            }
-        }
-
         // Simulate network updates every 30 seconds
         setInterval(updateNetworkStats, 30000);
 
         // Initialize with some realistic values
         updateNetworkStats();
+
+        // Add some demo users for testing
+        userDatabase['demo'] = {
+            username: 'demo',
+            email: 'demo@topyturner.com',
+            password: 'demo123',
+            walletAddress: '$TOPYDemoWallet123456789ABCDEF',
+            balance: 15.234567,
+            totalMined: 45.678901,
+            joinDate: new Date().toISOString()
+        };
     </script>
 </body>
 </html>
